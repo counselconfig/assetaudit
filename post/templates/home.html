@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+    <title>Asset Audit</title>
+</head>
+<body>
+    <div class="container my-4 post-wrapper">
+        <!-- Search Start -->
+        <div class="jumbotron border shadow">
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <form>
+                        <div class="input-group">
+                            <input name="q" type="text" placeholder="Enter email address" class="form-control form-control-lg" />
+                            <div class="input-group-append">
+                                <button class="btn btn-dark btn-lg">Find Assets</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End Search -->
+        <!-- <h3>Assets</h3>
+        <p>
+            <a class="btn btn-success" href="/add">Add New Employee</a>
+        </p> -->
+        {% for post in posts %}
+        <div class="card my-3 post-box">
+            <h5 class="card-header">{{post.Reference_No}}</h5>
+            <div class="card-body">
+                <p class="card-text">{{post.Serial_No}}</p>
+                <p>
+                    <a href="/update/{{post.id}}" class="btn btn-success">Update</a>
+                    <a onclick="return confirm('Are you sure to delete?')" href="/delete/{{post.id}}" class="btn btn-danger">Delete</a>
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- <ul class="pagination">
+            {% if posts.has_previous %}
+            <li class="page-item">
+                <a href="?page=1" class="page-link"><< First</a>
+            </li>
+            <li class="page-item">
+                <a href="{{posts.previous_page_link}}" class="page-link">< Previous</a>
+            </li>
+            {% endif %}
+            {% if posts.has_next %}
+            <li class="page-item">
+                <a href="?page={{posts.next_page_number}}" class="page-link">Next ></a>
+            </li>
+            <li class="page-item">
+                <a href="?page={{posts.paginator.num_pages}}" class="page-link">Last >></a>
+            </li>
+            {% endif %}
+        </ul> -->
+    </div>
+   
+</body>
+</html>
